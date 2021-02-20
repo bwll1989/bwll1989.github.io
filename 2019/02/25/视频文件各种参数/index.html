@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.bwll.site","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="在播放器制作过程中经常见到各种参数，简单做了下查询，在此做一下记录方便日后查询。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="视频文件各种参数">
+<meta property="og:url" content="https://www.bwll.site/2019/02/25/%E8%A7%86%E9%A2%91%E6%96%87%E4%BB%B6%E5%90%84%E7%A7%8D%E5%8F%82%E6%95%B0/index.html">
+<meta property="og:site_name" content="Bwll1989&#39;s Blog">
+<meta property="og:description" content="在播放器制作过程中经常见到各种参数，简单做了下查询，在此做一下记录方便日后查询。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-02-25T09:24:01.000Z">
+<meta property="article:modified_time" content="2019-02-28T02:58:24.000Z">
+<meta property="article:author" content="WuBin">
+<meta property="article:tag" content="video">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.bwll.site/2019/02/25/%E8%A7%86%E9%A2%91%E6%96%87%E4%BB%B6%E5%90%84%E7%A7%8D%E5%8F%82%E6%95%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>视频文件各种参数 | Bwll1989's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133424827-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-133424827-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bc948c224b26fd246041cd00391efdb1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Bwll1989's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个人若想从思维中获得乐趣<br>那么他第一个愿望就是学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://www.bwll.site/2019/02/25/%E8%A7%86%E9%A2%91%E6%96%87%E4%BB%B6%E5%90%84%E7%A7%8D%E5%8F%82%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/favicon.png">
+      <meta itemprop="name" content="WuBin">
+      <meta itemprop="description" content="知我者谓我心忧<br>不知我者谓我何求">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bwll1989's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          视频文件各种参数
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-02-25 17:24:01" itemprop="dateCreated datePublished" datetime="2019-02-25T17:24:01+08:00">2019-02-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-02-28 10:58:24" itemprop="dateModified" datetime="2019-02-28T10:58:24+08:00">2019-02-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在播放器制作过程中经常见到各种参数，简单做了下查询，在此做一下记录方便日后查询。  </p>
+<a id="more"></a>
+<blockquote>
+<h1 id="常见封装格式"><a href="#常见封装格式" class="headerlink" title="常见封装格式"></a>常见封装格式</h1><p>视频是现在计算机中多媒体系统中的重要一环。为了适应储存视频的需要，人们设定了不同的视频文件格式来把视频和音频放在一个文件中，以方便同时回放，这个文件就是封装。常见有AVI、RMVB、MKV、MOV、MP4等，一个完整的视频文件是由音频和视频2部分组成的。H264、H263，mpeg4等就是视频编码格式，MP3、AAC等就是音频编码格式。  </p>
+<blockquote>
+<h2 id="MOV"><a href="#MOV" class="headerlink" title=".MOV"></a>.MOV</h2><p>MOV格式是由美国著名的Apple（苹果）公司开发的一种视频格式，其默认的播放器是苹果的QuickTime Player。具有较高的压缩比率和较完美的视频清晰度，并可以保存alpha通道。多媒体编辑及视频处理软件支持比较好。  </p>
+<h2 id="MP4"><a href="#MP4" class="headerlink" title=".MP4"></a>.MP4</h2><p>MP4是一套用于音频、视频信息的压缩编码标准，由国际标准化组织（ISO）和国际电工委员会（IEC）下属的“动态图像专家组”（Moving Picture Experts Group，即MPEG）制定，在视频编辑软件和播放设备上的兼容性很好，兼容编码全面。  </p>
+<h2 id="AVI"><a href="#AVI" class="headerlink" title=".AVI"></a>.AVI</h2><p>由微软公司开发的一种数字音频与视频文件格式， AVI视频格式的优点是图像质量好，但是其缺点是体积过于庞大。<br>尽管AVI已经属于老旧的技术，但是由于Windows的通用性，和简单易懂的开发API，仍被广泛使用。AVI的文件结构分为“头部”，“主体”和“索引”三部分。主体中图像数据和声音数据是交互存放的。从尾部的索引可以索引跳到自己想放的位置。AVI将视频和音频封装在一个文件里，其顺序是：若干视频帧（Video Frame）之后接着若干音频帧（Audio Frame），再然后是视频帧、音频帧，故名为“音频视频交织”，意即音频和视频按帧交错排列，以此达到音频同步于视频播放的效果。AVI本身只是提供了这么一个框架，内部的图像数据和声音顺据格式可以是任意的编码形式。但是由于索引放在了文件尾部，所以在播放internet流媒体时已属力不从心。  </p>
+<h2 id="MKV"><a href="#MKV" class="headerlink" title=".MKV"></a>.MKV</h2><p>Matroska多媒体容器（Multimedia Container）是一种开放标准的自由的容器和文件格式，是一种多媒体封装格式，能够在一个文件中容纳无限数量的视频、音频、图片或字幕轨道。所以其不是一种压缩格式，而是Matroska定义的一种多媒体容器文件。其目标是作为一种统一格式保存常见的电影、电视节目等多媒体内容。在概念上Matroska和其他容器，比如AVI、MP4或ASF（Advanced Sreaming Format，即高级流格式）比较类似，但其在技术规程上完全开放，在实现上包含很多开源软件。可将多种不同编码的视频及16条以上不同格式的音频和不同语言的字幕流封装到一个Matroska 媒体文件当中。最大的特点就是能容纳多种不同类型编码的视频、音频及字幕流。  </p>
+<h2 id="RMVB"><a href="#RMVB" class="headerlink" title=".RMVB"></a>.RMVB</h2><p>RMVB的前身为RM格式，它们是Real Networks公司制定的音频视频压缩规范，根据不同的网络传输速率，而制定出不同的压缩比率，从而实现在低速率的网络上进行影像数据实时传送和播放，具有体积小，画质不错的优点。它的先进之处在于RMVB视频格式打破了原先RM格式那种平均压缩采样的方式，在保证平均压缩比的基础上合理利用比特率资源。  </p>
+<h2 id="FLV"><a href="#FLV" class="headerlink" title=".FLV"></a>.FLV</h2><p>FLV流媒体格式是一种全新的视频格式，全称为Flash Video。由于它形成的文件极小、加载速度极快，普遍使用于网络视频网站。  </p>
+<h2 id="WebM"><a href="#WebM" class="headerlink" title=".WebM"></a>.WebM</h2><p>WebM由Google提出，是一个开放、免费的媒体文件格式。WebM 影片格式其实是以 Matroska（即 MKV）容器格式为基础开发的新容器格式，WebM标准的网络视频更加偏向于开源并且是基于HTML5标准的，WebM 项目旨在为对每个人都开放的网络开发高质量、开放的视频格式，其重点是解决视频服务这一核心的网络用户体验。  </p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><code>.WMV</code> (Windows Media Video) 是微软公司开发的一种数字视频压缩格式。使用较少。<br><code>.RM</code> RMVB早期版本，固定码率，很少见到了。<br><code>.3GP</code> 是由用于3G UMTS多媒体服务的第三代合作伙伴计划（3GPP）定义的多媒体 容器格式。它用于3G 手机，但也可以在一些2G和4G手机上播放。很少见到了。<br><code>.F4V</code>  与<code>FLV</code>对应属于Flash Video的一种。很少见到了。<br><code>.TS</code> 是用于传输和存储音频，视频以及节目和系统信息协议（PSIP）数据的标准数字容器格式。它用于广播系统或视频网站。</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://wiki.multimedia.cx/index.php/Microsoft_Audio/Video_Interleaved">Microsoft Audio / Video Interleaved（AVI)</a><br><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/previous-versions//ms779636(v=vs.85)">AVI RIFF文件参考</a><br><a target="_blank" rel="noopener" href="https://wiki.multimedia.cx/index.php/Matroska">Matroska</a><br><a target="_blank" rel="noopener" href="https://matroska.org/technical/guides/index.html">Matroska Media Container</a><br><a target="_blank" rel="noopener" href="https://www.adobe.com/devnet/f4v.html">F4V/FLV 技术中心</a><br><a target="_blank" rel="noopener" href="https://wiki.multimedia.cx/index.php/RealMedia">RealMedia格式</a><br><a target="_blank" rel="noopener" href="https://www.webmproject.org/vp9/">WebM</a><br><a target="_blank" rel="noopener" href="https://wiki.multimedia.cx/index.php/QuickTime_container">QuickTime container</a><br><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Comparison_of_video_container_formats">视频容器格式的比较</a></p>
+</blockquote>
+</blockquote>
+<h1 id="常见编码格式"><a href="#常见编码格式" class="headerlink" title="常见编码格式"></a>常见编码格式</h1><blockquote>
+<h2 id="ITU-T"><a href="#ITU-T" class="headerlink" title="ITU-T"></a>ITU-T</h2><blockquote>
+<h3 id="H-263"><a href="#H-263" class="headerlink" title="H.263"></a>H.263</h3><p>H.263是一种视频压缩标准，最初设计为视频会议的低比特率压缩格式。它是由ITU-T 视频编码专家组（VCEG）在1995/1996结束的项目中开发的，作为ITU-T领域 H.26x系列视频编码标准的一员，后来又扩展了在1998年和2000年增加了各种额外的增强功能。1997年和2001年也增加了更多的功能，并于2005年制作了统一版本。  </p>
+<h3 id="H-264"><a href="#H-264" class="headerlink" title="H.264"></a>H.264</h3><p>H.264视频格式具有非常广泛的应用范围，涵盖从低比特率互联网流媒体应用到HDTV广播和几乎无损编码的数字电影应用的所有形式的数字压缩视频。  </p>
+<h3 id="H-265"><a href="#H-265" class="headerlink" title="H.265"></a>H.265</h3><p>高效视频编码（HEVC），也称为H.265和MPEG-H第2部分，是视频压缩标准，被设计为广泛使用的H.264或MPEG-4的后继者。  </p>
+<h3 id="相关链接-1"><a href="#相关链接-1" class="headerlink" title="相关链接"></a>相关链接</h3><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Video_Coding_Experts_Group">ITU-T</a><br><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/H.263">H263</a><br><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC">H264</a><br><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding">H265</a><br><a target="_blank" rel="noopener" href="http://x265.org/hevc-h265/">HEVC/H.265</a><br><a target="_blank" rel="noopener" href="https://wiki.multimedia.cx/index.php/H.264">MultimediaWiki H264</a></p>
+</blockquote>
+<h2 id="MPEG"><a href="#MPEG" class="headerlink" title="MPEG"></a>MPEG</h2><blockquote>
+<h3 id="MPEG-4"><a href="#MPEG-4" class="headerlink" title="MPEG-4"></a>MPEG-4</h3><p>MPEG-4是一种定义音频和视频（AV）数字数据压缩的方法。它在1998年年底推出，并指定的标准为一组的音频和视频编码格式。  </p>
+<h3 id="相关链接-2"><a href="#相关链接-2" class="headerlink" title="相关链接"></a>相关链接</h3><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/MPEG-4">MPEG-4</a><br><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Moving_Picture_Experts_Group">MPEG</a><br><a target="_blank" rel="noopener" href="https://mpeg.chiariglione.org/">Moving Picture Experts Group (MPEG)</a></p>
+</blockquote>
+<h2 id="Google"><a href="#Google" class="headerlink" title="Google"></a>Google</h2><blockquote>
+<h3 id="VP8"><a href="#VP8" class="headerlink" title="VP8"></a>VP8</h3><p>VP8是一种开放且免版税的 视频压缩格式，由Google拥有，由On2创建，作为VP7的后续产品。VP8可以与Vorbis和Opus音频一起多路复用到基于Matroska的容器格式WebM中。VP8仅支持逐行扫描视频信号，具有4：2：0 色度子采样和每个采样8位。  </p>
+<h3 id="VP9"><a href="#VP9" class="headerlink" title="VP9"></a>VP9</h3><p>VP9是VP8的后续产品，主要与MPEG的高效视频编码（HEVC / H.265）竞争。起初，VP9主要用于谷歌的视频平台YouTube。与HEVC相比，VP9支持在Web浏览器中很常见。  </p>
+<h3 id="相关链接-3"><a href="#相关链接-3" class="headerlink" title="相关链接"></a>相关链接</h3><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/VP8">VP8</a><br><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/VP9">VP9</a><br><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/On2_Technologies">On2</a>  </p>
+</blockquote>
+<h2 id="HAP"><a href="#HAP" class="headerlink" title="HAP"></a>HAP</h2><blockquote>
+<h3 id="HAP-1"><a href="#HAP-1" class="headerlink" title="HAP"></a>HAP</h3><p>HAP编码具有最低的数据速率和合理的图像质量。</p>
+<h3 id="HAP-Alpha"><a href="#HAP-Alpha" class="headerlink" title="HAP Alpha"></a>HAP Alpha</h3><p>HAP Alpha具有与HAP相同的图像质量，但是支持Alpha通道。</p>
+<h3 id="HAP-Q"><a href="#HAP-Q" class="headerlink" title="HAP Q"></a>HAP Q</h3><p>HAP Q以更大的文件大小为代价提高了图像质量。</p>
+<h3 id="HAP-Q-Alpha"><a href="#HAP-Q-Alpha" class="headerlink" title="HAP Q Alpha"></a>HAP Q Alpha</h3><p>HAP Q Alpha以更大的文件大小为代价提高了图像质量和Alpha通道。  </p>
+<h3 id="相关链接-4"><a href="#相关链接-4" class="headerlink" title="相关链接"></a>相关链接</h3><p><a target="_blank" rel="noopener" href="https://hap.video/using-hap.html">HAP</a></p>
+</blockquote>
+<h2 id="Apple-ProRes"><a href="#Apple-ProRes" class="headerlink" title="Apple ProRes"></a>Apple ProRes</h2><blockquote>
+<h3 id="Apple-ProRes-1"><a href="#Apple-ProRes-1" class="headerlink" title="Apple ProRes"></a>Apple ProRes</h3><p>Apple ProRes编解码器充分利用多核处理功能，并具有快速，低分辨率的解码模式。所有Apple ProRes编解码器均支持全分辨率的所有帧大小（包括SD，HD，2K，4K和5K）。数据速率根据编解码器类型，图像内容，帧大小和帧速率而变化。   </p>
+<h3 id="相关链接-5"><a href="#相关链接-5" class="headerlink" title="相关链接"></a>相关链接</h3><p><a target="_blank" rel="noopener" href="https://support.apple.com/en-us/HT202410">Apple ProRes</a><br><a target="_blank" rel="noopener" href="https://www.appgeeker.com/how-to/what-is-apple-prores.html">什么是Apple ProRes</a><br><a target="_blank" rel="noopener" href="https://wiki.multimedia.cx/index.php/Apple_ProRes">MultimediaWiki Apple ProRes</a></p>
+</blockquote>
+<h2 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h2><p><a target="_blank" rel="noopener" href="https://hap.video/benchmarks.html">H.264，ProRes和HAP对比</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/leixiaohua1020/article/details/11842919">封装格式对比</a><br><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats">音频编码格式对比</a><br><a target="_blank" rel="noopener" href="https://www.bgteach.com/article/134">视频文件格式知多少</a><br><a target="_blank" rel="noopener" href="https://www.4k123.com/thread-8194-1-1.html">视频格式基础知识</a></p>
+</blockquote>
+<h1 id="比特率"><a href="#比特率" class="headerlink" title="比特率"></a>比特率</h1><blockquote>
+<h2 id="比特率-1"><a href="#比特率-1" class="headerlink" title="比特率"></a>比特率</h2><p>比特率是指每秒传送的比特(bit)数。单位为 bps(Bit Per Second)，比特率越高，每秒传送数据就越多。多媒体行业在指音频或者视频在单位时间内的数据传输率时通常使用<code>码流</code>或<code>码率</code>，单位是kbps（千位每秒）。在同等分辨率下（不考虑各种压缩算法的优劣），码率越高视频清晰度越高，文件体积越大。</p>
+<blockquote>
+<h3 id="恒定比特率（CBR）"><a href="#恒定比特率（CBR）" class="headerlink" title="恒定比特率（CBR）"></a>恒定比特率（CBR）</h3><p>恒定码率就是说每一秒种的画面如果看做是一个静止的图片文件的话（实际上是每一帧的画面大小加起来）它大小是固定的。</p>
+<h3 id="可变比特率（VBR）"><a href="#可变比特率（VBR）" class="headerlink" title="可变比特率（VBR）"></a>可变比特率（VBR）</h3><p>可变码率主就是每一秒画面的大小是不固定。整个视频比特率是不固定的，有最大码率，平均码率和最小码率。</p>
+</blockquote>
+<h2 id="相关链接-6"><a href="#相关链接-6" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%AF%94%E7%89%B9%E7%8E%87">比特率</a>  </p>
+</blockquote>
+<h1 id="帧速率"><a href="#帧速率" class="headerlink" title="帧速率"></a>帧速率</h1><blockquote>
+<h2 id="帧速率-1"><a href="#帧速率-1" class="headerlink" title="帧速率"></a>帧速率</h2><p>帧速率（以每秒帧数或fps表示）是称为帧的连续图像出现在显示器上的频率（速率）。该术语同样适用于胶片和摄像机，计算机图形和动作捕捉系统。帧速率也可以称为帧频率，并以赫兹(Hz)表示。简单地说就是在1秒钟时间里播放照片的数量。每秒24帧（FPS）是电影院的标准。增加帧速率可以减轻常见的模糊，闪烁和卡顿等视觉效果。</p>
+<h2 id="相关链接-7"><a href="#相关链接-7" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://www.pocket-lint.com/tv/news/143206-what-is-hfr-high-frame-rate-and-why-should-you-care">什么是HFR（高帧率）</a><br><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Persistence_of_vision">视觉持续</a></p>
+</blockquote>
+<h1 id="分辨率"><a href="#分辨率" class="headerlink" title="分辨率"></a>分辨率</h1><p>图像尺寸，视频文件单帧像素数量。</p>
+<h1 id="色彩模型"><a href="#色彩模型" class="headerlink" title="色彩模型"></a>色彩模型</h1><blockquote>
+<p>色彩模型（Color model）是一种抽象数学模型，通过一组数字来描述颜色（例如RGB、CMYK等）。色彩空间和色彩模型是容易混淆的概念，色彩模型是把色彩按规则排列的模型，而色彩空间是其在一定条件下排列的结果，在一个色彩模型下可以有不同的色彩空间，它们根据排列的条件的不同会有不同的色域</p>
+<h2 id="YUV"><a href="#YUV" class="headerlink" title="YUV"></a>YUV</h2><p>YUV，是一种颜色编码方法。常使用在各个影像处理中。 YUV在对照片或影片编码时，考虑到人类的感知能力，降低色度的带宽。“Y”表示明亮度（Luminance、Luma），“U”和“V”则是色度、浓度（Chrominance、Chroma）。为节省带宽起见，大多数YUV格式平均使用的每像素位数都少于24位。最常见YUV格式为YUV420P。  </p>
+<h2 id="RGB"><a href="#RGB" class="headerlink" title="RGB"></a>RGB</h2><p>又称RGB颜色模型或红绿蓝颜色模型，是一种加色模型，将红（Red）、绿（Green）、蓝（Blue）三原色的色光以不同的比例相加，以产生多种多样的色光。  </p>
+<h2 id="CMYK"><a href="#CMYK" class="headerlink" title="CMYK"></a>CMYK</h2><p>CMYK是彩色印刷时采用的一种套色模式，利用色料的三原色混色原理，加上黑色油墨，共计四种颜色混合叠加，形成所谓“全彩印刷”。</p>
+<h2 id="HSI和HSV"><a href="#HSI和HSV" class="headerlink" title="HSI和HSV"></a>HSI和HSV</h2><p>HSL和HSV都是一种将RGB色彩模型中的点在圆柱坐标系中的表示法。这两种表示法试图做到比基于笛卡尔坐标系的几何结构RGB更加直观。<br><code>HSL</code>即色相、饱和度、亮度<br><code>HSV</code>即色相、饱和度、明度</p>
+<h2 id="相关链接-8"><a href="#相关链接-8" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/YUV">YUV</a><br><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%89%B2%E5%BA%A6%E6%8A%BD%E6%A0%B7">色度采样</a><br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/38303244">色彩空间与色彩模型的本质区别是什么？</a><br><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%96%93">色彩空間</a><br><a target="_blank" rel="noopener" href="https://www.konicaminolta.com.cn/instruments/knowledge/color/pdf/color_communication.pdf">精确的色彩交流</a><br><a target="_blank" rel="noopener" href="https://www.konicaminolta.com.cn/instruments/knowledge/light/pdf/language_of_light.pdf">光的语言</a><br><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%8D%B0%E5%88%B7%E5%9B%9B%E5%88%86%E8%89%B2%E6%A8%A1%E5%BC%8F">印刷四分色模式</a><br><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HSL%E5%92%8CHSV%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4">HSL和HSV色彩空间</a><br><a target="_blank" rel="noopener" href="http://w3.kcua.ac.jp/~fujiwara/infosci/colormodel.html">色彩模型</a>  </p>
+</blockquote>
+<h1 id="色彩空间"><a href="#色彩空间" class="headerlink" title="色彩空间"></a>色彩空间</h1><blockquote>
+<h2 id="YCbCr"><a href="#YCbCr" class="headerlink" title="YCbCr"></a>YCbCr</h2><p>YCbCr或Y’CbCr有的时候会被写作：YCBCR或是Y’CBCR，是色彩空间的一种，通常会用于影片中的影像连续处理，或是数字摄影系统中。Y’和Y是不同的，Y就是所谓的流明（luminance），表示光的浓度且为非线性，使用伽马修正（gamma correction）编码处理。Y’为颜色的亮度（luma）成分、而CB和CR则为蓝色和红色的浓度偏移量成分。</p>
+<h2 id="CIE-XYZ"><a href="#CIE-XYZ" class="headerlink" title="CIE XYZ"></a>CIE XYZ</h2><h2 id="CIE-RGB"><a href="#CIE-RGB" class="headerlink" title="CIE RGB"></a>CIE RGB</h2><h2 id="Lab"><a href="#Lab" class="headerlink" title="Lab"></a>Lab</h2><p>Lab是一种不常用的色彩空间。它是在1931年国际照明委员会（CIE）制定的颜色度量国际标准的基础上建立起来的。1976年，经修改后被正式命名为CIELab。它是一种设备无关的颜色系统，也是一种基于生理特征的颜色系统。这也就意味着，它是用数字化的方法来描述人的视觉感应。Lab颜色空间中的L分量用于表示像素的亮度，取值范围是[0,100],表示从纯黑到纯白；a表示从红色到绿色的范围，取值范围是[127,-128]；b表示从黄色到蓝色的范围，取值范围是[127,-128]。  </p>
+<h2 id="Adobe-RGB"><a href="#Adobe-RGB" class="headerlink" title="Adobe RGB"></a>Adobe RGB</h2><p>Adobe RGB色彩空间是一种由Adobe Systems于1998年开发的色彩空间。开发的目的是为了尽可能在CMYK彩色印刷中利用计算机显示器等设备的RGB颜色模式上囊括更多的颜色。  </p>
+<h2 id="SRGB"><a href="#SRGB" class="headerlink" title="SRGB"></a>SRGB</h2><p>SRGB色彩空间（标准红绿蓝色彩空间）是惠普与微软于1996年一起开发的用于显示器、打印机以及因特网的一种标准RGB色彩空间。</p>
+<h2 id="BT-709-BT-2020"><a href="#BT-709-BT-2020" class="headerlink" title="BT.709/BT.2020"></a>BT.709/BT.2020</h2><p>这两个标准都是ITU国际电信联盟专门为现在的HDTV以及未来UHD电视（4K、8K）制定的标准，在色域上的变化主要在于色深方面，BT.2020采用了比传统BT.709更宽广的色域空间。这一提升对于整个影像在色彩层次与过渡方面的增强起到了关键的作用。而色域范围的面积也远远大于BT.709标准，能够显示更加丰富的色彩。</p>
+<h2 id="相关链接-9"><a href="#相关链接-9" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/YCbCr">YCbCr</a><br><a target="_blank" rel="noopener" href="http://w3.kcua.ac.jp/~fujiwara/infosci/colorspace/colorspace4.html">YCbCr / YPbPr色彩空间</a><br><a target="_blank" rel="noopener" href="http://w3.kcua.ac.jp/~fujiwara/infosci/colorspace/colorspace1.html">XYZ色彩空间</a><br><a target="_blank" rel="noopener" href="http://w3.kcua.ac.jp/~fujiwara/infosci/colorspace/colorspace3.html">XYZ-Lab转换</a><br><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Adobe_RGB%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4">Adobe RGB色彩空间</a><br><a target="_blank" rel="noopener" href="http://w3.kcua.ac.jp/~fujiwara/infosci/primaries.html">三原色</a><br><a target="_blank" rel="noopener" href="https://www.face2ai.com/DIP-8-0-%E5%BD%A9%E8%89%B2%E6%A8%A1%E5%9E%8B-CIEXYZ-CIERGB/">彩色模型，CIE XYZ，CIE RGB</a><br><a target="_blank" rel="noopener" href="http://www.optique-ingenieur.org/en/courses/OPI_ang_M07_C02/co/Contenu_07.html">颜色系统RGB和CIE XYZ</a>  </p>
+</blockquote>
+<h1 id="色域"><a href="#色域" class="headerlink" title="色域"></a>色域</h1><blockquote>
+<h2 id="色域-1"><a href="#色域-1" class="headerlink" title="色域"></a>色域</h2><p>在计算机图形处理中，色域是颜色的某个完全的子集。颜色子集最常见的应用是用来精确地代表一种给定的情况。例如一个给定的色彩空间或是某个输出装置的呈色范围。简单来说就是对象能表示色彩范围。不同的色彩空间在CIE XYZ颜色空间上映射范围。</p>
+<h2 id="相关链接-10"><a href="#相关链接-10" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36968533">色彩空间与色域</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9aeba1e1ec48">色域/颜色空间</a><br><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%89%B2%E5%9F%9F">色域</a>  </p>
+</blockquote>
+<h1 id="颜色深度"><a href="#颜色深度" class="headerlink" title="颜色深度"></a>颜色深度</h1><blockquote>
+<h2 id="颜色深度-1"><a href="#颜色深度-1" class="headerlink" title="颜色深度"></a>颜色深度</h2><p>颜色深度也称为<code>位深度</code>，数字图像中的每个颜色像素都是通过三种基色的组合创建的：红色，绿色和蓝色。每种原色通常被称为“颜色通道”，并且可以具有由其位深度指定的任何范围的强度值。简单来说就是指可以描述的颜色数量，每一个像素点用多少位存储颜色，位深越大，颜色越丰富，颜色之间的过渡更自然和平滑<br>“每像素位数”（bpp）指的是所有三个颜色通道中的位的总和，并表示每个像素处可用的总颜色。彩色图像经常出现混淆，因为可能不清楚发布的数字是指每个像素的比特数还是RGB每个信道的比特数。使用“bpp”作为后缀有助于区分这两个术语。</p>
+<h2 id="相关链接-11"><a href="#相关链接-11" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Color_depth">颜色深度</a><br><a target="_blank" rel="noopener" href="https://www.leadtools.com/help/leadtools/v20/dh/to/introduction-bits-per-pixel-and-related-ideas.html">Bits Per Pixel</a><br><a target="_blank" rel="noopener" href="https://www.diyphotography.net/8-bit-vs-16-bit-color-depth-use-matters/">8位与16位</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/cc65431362/article/details/80694870">位深度、色深的区别</a></p>
+</blockquote>
+<h1 id="Gamma"><a href="#Gamma" class="headerlink" title="Gamma"></a>Gamma</h1><blockquote>
+<h3 id="Gamma-1"><a href="#Gamma-1" class="headerlink" title="Gamma"></a>Gamma</h3><p>人眼接受光和照相机并不相同,我们把图像从最黑到最白，按100~0来对应，在这个范围内，人眼的视觉感应和真实的值也并不是成线性关系的，当值处于18时，在人眼里已经觉得这是中间值50了。这是因为比起明亮的部分，人眼对暗部的感知更加敏感。简单来说Gamma值就是用来校正这个关系</p>
+<h3 id="相关链接-12"><a href="#相关链接-12" class="headerlink" title="相关链接"></a>相关链接</h3><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Gamma_correction">伽马校正</a><br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27467127">色彩校正中的 gamma 值是什么？</a><br><a target="_blank" rel="noopener" href="https://learnopengl.com/Advanced-Lighting/Gamma-Correction">Gamma-Correction</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/TracePlus/p/4168447.html">Gamma校正与线性空间</a><br><a target="_blank" rel="noopener" href="http://w3.kcua.ac.jp/~fujiwara/infosci/gamma.html">伽玛校正</a>  </p>
+</blockquote>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/video/" rel="tag"># video</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/02/21/hexo%E9%85%8D%E7%BD%AEsitemap/" rel="prev" title="hexo配置sitemap">
+      <i class="fa fa-chevron-left"></i> hexo配置sitemap
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/02/27/gitment%E9%85%8D%E7%BD%AE%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98/" rel="next" title="gitment配置过程中出现的问题">
+      gitment配置过程中出现的问题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%B0%81%E8%A3%85%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">常见封装格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MOV"><span class="nav-number">1.1.</span> <span class="nav-text">.MOV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MP4"><span class="nav-number">1.2.</span> <span class="nav-text">.MP4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AVI"><span class="nav-number">1.3.</span> <span class="nav-text">.AVI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MKV"><span class="nav-number">1.4.</span> <span class="nav-text">.MKV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RMVB"><span class="nav-number">1.5.</span> <span class="nav-text">.RMVB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FLV"><span class="nav-number">1.6.</span> <span class="nav-text">.FLV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebM"><span class="nav-number">1.7.</span> <span class="nav-text">.WebM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">1.8.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5"><span class="nav-number">1.9.</span> <span class="nav-text">相关链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">常见编码格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ITU-T"><span class="nav-number">2.1.</span> <span class="nav-text">ITU-T</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#H-263"><span class="nav-number">2.1.1.</span> <span class="nav-text">H.263</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#H-264"><span class="nav-number">2.1.2.</span> <span class="nav-text">H.264</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#H-265"><span class="nav-number">2.1.3.</span> <span class="nav-text">H.265</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5-1"><span class="nav-number">2.1.4.</span> <span class="nav-text">相关链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MPEG"><span class="nav-number">2.2.</span> <span class="nav-text">MPEG</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MPEG-4"><span class="nav-number">2.2.1.</span> <span class="nav-text">MPEG-4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5-2"><span class="nav-number">2.2.2.</span> <span class="nav-text">相关链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Google"><span class="nav-number">2.3.</span> <span class="nav-text">Google</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VP8"><span class="nav-number">2.3.1.</span> <span class="nav-text">VP8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VP9"><span class="nav-number">2.3.2.</span> <span class="nav-text">VP9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5-3"><span class="nav-number">2.3.3.</span> <span class="nav-text">相关链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HAP"><span class="nav-number">2.4.</span> <span class="nav-text">HAP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HAP-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">HAP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HAP-Alpha"><span class="nav-number">2.4.2.</span> <span class="nav-text">HAP Alpha</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HAP-Q"><span class="nav-number">2.4.3.</span> <span class="nav-text">HAP Q</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HAP-Q-Alpha"><span class="nav-number">2.4.4.</span> <span class="nav-text">HAP Q Alpha</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5-4"><span class="nav-number">2.4.5.</span> <span class="nav-text">相关链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apple-ProRes"><span class="nav-number">2.5.</span> <span class="nav-text">Apple ProRes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Apple-ProRes-1"><span class="nav-number">2.5.1.</span> <span class="nav-text">Apple ProRes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5-5"><span class="nav-number">2.5.2.</span> <span class="nav-text">相关链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E9%93%BE%E6%8E%A5"><span class="nav-number">2.6.</span> <span class="nav-text">引用链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%94%E7%89%B9%E7%8E%87"><span class="nav-number">3.</span> <span class="nav-text">比特率</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%94%E7%89%B9%E7%8E%87-1"><span class="nav-number">3.1.</span> <span class="nav-text">比特率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%81%92%E5%AE%9A%E6%AF%94%E7%89%B9%E7%8E%87%EF%BC%88CBR%EF%BC%89"><span class="nav-number">3.1.1.</span> <span class="nav-text">恒定比特率（CBR）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E5%8F%98%E6%AF%94%E7%89%B9%E7%8E%87%EF%BC%88VBR%EF%BC%89"><span class="nav-number">3.1.2.</span> <span class="nav-text">可变比特率（VBR）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5-6"><span class="nav-number">3.2.</span> <span class="nav-text">相关链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%A7%E9%80%9F%E7%8E%87"><span class="nav-number">4.</span> <span class="nav-text">帧速率</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A7%E9%80%9F%E7%8E%87-1"><span class="nav-number">4.1.</span> <span class="nav-text">帧速率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5-7"><span class="nav-number">4.2.</span> <span class="nav-text">相关链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E8%BE%A8%E7%8E%87"><span class="nav-number">5.</span> <span class="nav-text">分辨率</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%89%B2%E5%BD%A9%E6%A8%A1%E5%9E%8B"><span class="nav-number">6.</span> <span class="nav-text">色彩模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#YUV"><span class="nav-number">6.1.</span> <span class="nav-text">YUV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RGB"><span class="nav-number">6.2.</span> <span class="nav-text">RGB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CMYK"><span class="nav-number">6.3.</span> <span class="nav-text">CMYK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HSI%E5%92%8CHSV"><span class="nav-number">6.4.</span> <span class="nav-text">HSI和HSV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5-8"><span class="nav-number">6.5.</span> <span class="nav-text">相关链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%89%B2%E5%BD%A9%E7%A9%BA%E9%97%B4"><span class="nav-number">7.</span> <span class="nav-text">色彩空间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#YCbCr"><span class="nav-number">7.1.</span> <span class="nav-text">YCbCr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CIE-XYZ"><span class="nav-number">7.2.</span> <span class="nav-text">CIE XYZ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CIE-RGB"><span class="nav-number">7.3.</span> <span class="nav-text">CIE RGB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lab"><span class="nav-number">7.4.</span> <span class="nav-text">Lab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adobe-RGB"><span class="nav-number">7.5.</span> <span class="nav-text">Adobe RGB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SRGB"><span class="nav-number">7.6.</span> <span class="nav-text">SRGB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BT-709-BT-2020"><span class="nav-number">7.7.</span> <span class="nav-text">BT.709&#x2F;BT.2020</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5-9"><span class="nav-number">7.8.</span> <span class="nav-text">相关链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%89%B2%E5%9F%9F"><span class="nav-number">8.</span> <span class="nav-text">色域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%89%B2%E5%9F%9F-1"><span class="nav-number">8.1.</span> <span class="nav-text">色域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5-10"><span class="nav-number">8.2.</span> <span class="nav-text">相关链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%9C%E8%89%B2%E6%B7%B1%E5%BA%A6"><span class="nav-number">9.</span> <span class="nav-text">颜色深度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%9C%E8%89%B2%E6%B7%B1%E5%BA%A6-1"><span class="nav-number">9.1.</span> <span class="nav-text">颜色深度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5-11"><span class="nav-number">9.2.</span> <span class="nav-text">相关链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Gamma"><span class="nav-number">10.</span> <span class="nav-text">Gamma</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gamma-1"><span class="nav-number">10.0.1.</span> <span class="nav-text">Gamma</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%93%BE%E6%8E%A5-12"><span class="nav-number">10.0.2.</span> <span class="nav-text">相关链接</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="WuBin"
+      src="/img/favicon.png">
+  <p class="site-author-name" itemprop="name">WuBin</p>
+  <div class="site-description" itemprop="description">知我者谓我心忧<br>不知我者谓我何求</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:bwll1989@sina.com" title="E-Mail → mailto:bwll1989@sina.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WuBin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.bwll.site","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="普通视频文件（MP4&#x2F;AVI&#x2F;MOV）通过播放器播放最终输出到显示器上，简单说需要三个大步骤：分离、解码、渲染">
+<meta property="og:type" content="article">
+<meta property="og:title" content="视频播放原理">
+<meta property="og:url" content="https://www.bwll.site/2020/03/06/%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="Bwll1989&#39;s Blog">
+<meta property="og:description" content="普通视频文件（MP4&#x2F;AVI&#x2F;MOV）通过播放器播放最终输出到显示器上，简单说需要三个大步骤：分离、解码、渲染">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-03-06T06:07:50.000Z">
+<meta property="article:modified_time" content="2020-03-06T07:39:12.000Z">
+<meta property="article:author" content="WuBin">
+<meta property="article:tag" content="播放器">
+<meta property="article:tag" content="video">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.bwll.site/2020/03/06/%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%8E%9F%E7%90%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>视频播放原理 | Bwll1989's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133424827-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-133424827-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?bc948c224b26fd246041cd00391efdb1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Bwll1989's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个人若想从思维中获得乐趣<br>那么他第一个愿望就是学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://www.bwll.site/2020/03/06/%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/img/favicon.png">
+      <meta itemprop="name" content="WuBin">
+      <meta itemprop="description" content="知我者谓我心忧<br>不知我者谓我何求">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bwll1989's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          视频播放原理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-03-06 14:07:50 / Modified: 15:39:12" itemprop="dateCreated datePublished" datetime="2020-03-06T14:07:50+08:00">2020-03-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>普通视频文件（MP4/AVI/MOV）通过播放器播放最终输出到显示器上，简单说需要三个大步骤：分离、解码、渲染</p>
+<a id="more"></a>
+
+<h2 id="分离"><a href="#分离" class="headerlink" title="分离"></a>分离</h2><h4 id="解协议"><a href="#解协议" class="headerlink" title="解协议"></a>解协议</h4><blockquote>
+<p>若是网络流媒体协议数据，需要将数据文件解析为相应的封装格式。网络流媒体协议，如HTTP、RTMP等，将媒体数据和其他数据同时传输。视频播放器解协议将数据中的媒体文件解析为标准的视频文件。例如采用RTMP协议传输的数据经过解协议后，输出为FLV格式的媒体数据。</p>
+</blockquote>
+<h4 id="解封装"><a href="#解封装" class="headerlink" title="解封装"></a>解封装</h4><blockquote>
+<p>标准媒体文件（MKV/MP4/MOV）或解协议后的媒体文件等，需将文件分离，将音频、视频等数据拆分成单独的内容。解封装将视频、音频信息分离。</p>
+</blockquote>
+<h2 id="解码"><a href="#解码" class="headerlink" title="解码"></a>解码</h2><blockquote>
+<p>解封装后的音视频文件仍为压缩文件，不能够直接被声卡或显卡识别。<br>解码是指将解封装后生成的压缩视频（H264/H265/VP8/Mpeg4)和音频（FLAC/ACC）文件，解码为非压缩的视频（YUV/RGB）和音频（PCM）流。<br>这一步在整个播放过程中最为复杂，也最耗费系统资源。</p>
+</blockquote>
+<h4 id="滤镜"><a href="#滤镜" class="headerlink" title="滤镜"></a>滤镜</h4><blockquote>
+<p>解码完成后滤镜接过数据，通过滤镜信息对数据进行处理。</p>
+</blockquote>
+<h2 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h2><h4 id="音视频同步"><a href="#音视频同步" class="headerlink" title="音视频同步"></a>音视频同步</h4><blockquote>
+<p>根据封装模块里的参数信息，同步解码出来的视频和音频，并将数据流送至显卡和声卡。</p>
+</blockquote>
+<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><blockquote>
+<p>声卡和显卡获取同步后的数据流进行声音的播放和视频的显示。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%92%AD%E6%94%BE%E5%99%A8/" rel="tag"># 播放器</a>
+              <a href="/tags/video/" rel="tag"># video</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/02/VVVV%E5%85%A5%E9%97%A8/" rel="prev" title="VVVV入门">
+      <i class="fa fa-chevron-left"></i> VVVV入门
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/06/%E8%A7%86%E9%A2%91%E5%B8%A6%E5%AE%BD%E8%AE%A1%E7%AE%97/" rel="next" title="视频带宽计算">
+      视频带宽计算 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%A6%BB"><span class="nav-number">1.</span> <span class="nav-text">分离</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.0.1.</span> <span class="nav-text">解协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%B0%81%E8%A3%85"><span class="nav-number">1.0.2.</span> <span class="nav-text">解封装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">解码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BB%A4%E9%95%9C"><span class="nav-number">2.0.1.</span> <span class="nav-text">滤镜</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93"><span class="nav-number">3.</span> <span class="nav-text">渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9F%B3%E8%A7%86%E9%A2%91%E5%90%8C%E6%AD%A5"><span class="nav-number">3.0.1.</span> <span class="nav-text">音视频同步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA"><span class="nav-number">3.0.2.</span> <span class="nav-text">输出</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="WuBin"
+      src="/img/favicon.png">
+  <p class="site-author-name" itemprop="name">WuBin</p>
+  <div class="site-description" itemprop="description">知我者谓我心忧<br>不知我者谓我何求</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:bwll1989@sina.com" title="E-Mail → mailto:bwll1989@sina.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WuBin</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
